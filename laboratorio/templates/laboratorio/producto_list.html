@@ -1,0 +1,38 @@
+{% extends 'laboratorio/base.html' %}
+
+{% block title %}Lista de Productos{% endblock title %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Productos</h2>
+    <a href="{% url 'producto_create' %}" class="btn btn-primary">Insertar Nuevo Producto</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Laboratorio</th>
+            <th>Fecha de Fabricación</th>
+            <th>Costo</th>
+            <th>Venta</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for producto in productos %}
+        <tr>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.laboratorio.nombre }}</td>
+            <td>{{ producto.f_fabricacion }}</td>
+            <td>{{ producto.p_costo }}</td>
+            <td>{{ producto.p_venta }}</td>
+            <td>
+                <a href="{% url 'producto_update' producto.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'producto_delete' producto.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock content %}

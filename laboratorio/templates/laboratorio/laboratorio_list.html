@@ -1,0 +1,59 @@
+{% extends 'laboratorio/base.html' %}
+
+{% block title %}Lista de Laboratorios{% endblock title %}
+
+{% block content %}
+{% comment %} <h2>Lista de Laboratorios</h2>
+<a href="{% url 'laboratorio_create' %}">Insertar Nuevo Laboratorio</a>
+<ul>
+    {% for laboratorio in laboratorios %}
+        <li>
+            {{ laboratorio.nombre }} - {{ laboratorio.ciudad }}, {{ laboratorio.pais }}
+            <a href="{% url 'laboratorio_update' laboratorio.pk %}">Editar</a>
+            <a href="{% url 'laboratorio_delete' laboratorio.pk %}">Eliminar</a>
+        </li>
+    {% endfor %}
+</ul> {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Laboratorios</h2>
+    <a href="{% url 'laboratorio_create' %}" class="btn btn-primary">Insertar Nuevo Laboratorio</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Ciudad</th>
+            <th>País</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for laboratorio in laboratorios %}
+        <tr>
+            <td>{{ laboratorio.nombre }}</td>
+            <td>{{ laboratorio.ciudad }}</td>
+            <td>{{ laboratorio.pais }}</td>
+            <td>
+                <a href="{% url 'laboratorio_update' laboratorio.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                <a href="{% url 'laboratorio_delete' laboratorio.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock content %}
